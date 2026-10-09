@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibroMágico - Crea cuentos con IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .magic-card { 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.2); 
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="flex flex-col items-center justify-center text-center px-4">
+        
+        <!-- PANTALLA DE INICIO -->
+        <div id="home" class="space-y-8">
+            <h1 class="text-6xl font-bold mb-6 drop-shadow-lg">✨ LibroMágico ✨</h1>
+            <p class="text-xl mb-10 max-w-2xl">Crea cuentos personalizados para tus hijos con imágenes espectaculares estilo Pixar 3D.</p>
+            <button onclick="showCreate()" class="bg-yellow-400 hover:bg-yellow-300 text-purple-900 font-bold py-4 px-8 rounded-full text-2xl transition-all transform hover:scale-105 shadow-2xl cursor-pointer">
+                🚀 ¡Crear mi primer libro!
+            </button>
+        </div>
+
+        <!-- FORMULARIO DE CREACIÓN -->
+        <div id="create" class="hidden w-full max-w-md bg-white text-gray-800 p-8 rounded-3xl shadow-2xl space-y-4">
+            <h2 class="text-3xl font-bold mb-6 text-center text-purple-600">Configura la Magia</h2>
+            <div class="text-left space-y-4">
+                <div>
+                    <label class="block font-semibold mb-1">Nombre del Niño/a</label>
+                    <input id="name" type="text" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500" placeholder="Ej: Leo">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Tema de la aventura</label>
+                    <textarea id="topic" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500" placeholder="Ej: Un astronauta en un planeta de caramelos"></textarea>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Edad</label>
+                    <input id="age" type="number" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500" placeholder="Ej: 5">
+                </div>
+            </div>
+            <button onclick="generate()" class="w-full bg-purple-600 text-white font-bold py-3 rounded-xl hover:bg-purple-700 transition-colors mt-6">
+                ✨ Generar Libro Mágico
+            </button>
+            <button onclick="showHome()" class="w-full text-gray-500 text-sm mt-2 hover:underline">Volver</button>
+        </div>
+
+    </div>
+
+    <script>
+        function showCreate() {
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('create').classList.remove('hidden');
+        }
+        function showHome() {
+            document.getElementById('create').classList.add('hidden');
+            document.getElementById('home').classList.remove('hidden');
+        }
+        async function generate() {
+            const name = document.getElementById('name').value;
+            if(!name) return alert('Por favor, pon el nombre del niño');
+            alert('✨ ¡La magia ha comenzado! Estamos creando el libro de ' + name + '... \n\n(Ahora conectaremos la API de OpenAI en la siguiente fase)');
+        }
+    </script>
+</body>
+</html>
